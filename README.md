@@ -1,4 +1,13 @@
-# λambda
+<p align="center">
+  <img src="docs/assets/banner.svg" alt="λambda — Learner-Adaptive, Marks-Bound Drilling Agent" width="960" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/abaj8494/lambda-agent/stargazers"><img src="https://img.shields.io/github/stars/abaj8494/lambda-agent?style=flat&color=c9a227" alt="GitHub stars" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2d6a4f" alt="MIT license" /></a>
+  <a href="skills/"><img src="https://img.shields.io/badge/agent-skills-111827" alt="Agent Skills" /></a>
+  <a href="https://youtu.be/kzcI5F4tGiU"><img src="https://img.shields.io/badge/method-Eero%20Alvar-b45309" alt="Method: Eero Alvar" /></a>
+</p>
 
 Exam prep as a pair of Claude Code skills. 
 
@@ -15,6 +24,20 @@ I've added memory and motive:
 - Memory: every miss is logged in a fixed schema and your past errors
 seed future wrong options. 
 - Motive: every question is anchored to real past-paper question and marks
+
+The pipeline:
+
+```mermaid
+flowchart LR
+  L[Locate<br/>edge of what you hold] --> A[Ask<br/>marks-anchored MCQ]
+  A -->|pass| V[Advance<br/>DAG and ETA update]
+  A -->|miss| M[Miss<br/>atom filed in mind/]
+  M --> B[Bridge<br/>one reasoning step]
+  B --> D[Drill<br/>same move, new surface]
+  D -->|pass| V
+  D -->|fail| N[re-probe<br/>next session]
+  V --> A
+```
 
 ![A λ session in Obsidian: a missed Bayes question, the verdict, one teaching step, and the passed lock-in variant](docs/img/session.png)
 
