@@ -1,6 +1,6 @@
 ---
 name: lambda-map
-description: Build a λambda course map — the marks-bound routing table that makes /lambda sessions target assessed problems. Use as "/lambda-map <course-name> <folder(s) of question PDFs/notebooks>". Indexes tutorial/exam QUESTION files (never solutions), extracts per-question topics and marks, and writes courses/<name>/map.md into the vault.
+description: Build or incrementally update a λambda course map — the marks-bound routing table that makes /lambda sessions target assessed problems. Use as "/lambda-map <course-name> <folder(s)>" when materials first arrive and again each week as new sheets drop. Indexes question files (solutions are consulted as grounding only, never copied) and writes courses/<name>/map.md into the vault.
 ---
 
 # λambda map builder (schema: 1)
@@ -20,10 +20,12 @@ past exam papers, quiz exports, notebooks.
 
 ## Procedure
 
-1. **Inventory, and refuse solutions.** List candidate files. Exclude
-   anything matching `*solution*`, `*answers*`, `*marking*`, answer keys.
-   You index *questions only* — the map must never require having read a
-   solution, and λ sessions are forbidden from opening them.
+1. **Inventory and classify.** List candidate files; classify each as
+   questions or solutions (`*solution*`, `*answers*`, `*marking*`, keys).
+   Solutions are **grounding, not content**: read them to confirm marks,
+   intended method, and concept labels — never copy solution text, steps,
+   or final answers into the map. The map must read cleanly as if built
+   from questions alone.
 2. **Index per assessment surface.** For each question file, extract a
    per-question index: question number, marks (if stated), one line on
    what it asks (the task, not the topic label), and the concept(s) it
@@ -55,9 +57,31 @@ Source roots: <paths>
 | <concept> | <Tut X Qy — one-line task> | <Exam year Qz [marks]> |
 ```
 
+   End the map with a `## Sources` ledger: one line per indexed file with
+   the date it was indexed. This is what makes weekly updates cheap.
+
 6. Report: units mapped, questions indexed, the top-3 marks
    concentrations, and any blind spots (concepts with no drill or no
    assessed exemplar).
+
+## Weekly updates — courses arrive incrementally
+
+A real student does not hold the full term's corpus on day one; tutorial
+sheets and solutions land week by week. Design for that:
+
+- **Re-running the command is the update mechanism.** If
+  `courses/<name>/map.md` already exists, read it and its `## Sources`
+  ledger first; index only files not in the ledger; append the new
+  questions to the right unit tables; recompute the marks-at-stake
+  callout; add the new files to the ledger. Never rebuild from scratch —
+  existing rows and their wording stay put.
+- **Thin early-term coverage degrades gracefully.** When few or no
+  assessed surfaces exist yet, weight rows by lecture emphasis instead of
+  marks and tag them `no assessed exemplar yet` — sessions then anchor to
+  drills alone, and the tags disappear as past papers and quizzes enter
+  the ledger.
+- In the update report, call out which previous blind spots the new week's
+  material just covered.
 
 ## Conventions
 

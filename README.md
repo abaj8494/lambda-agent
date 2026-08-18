@@ -93,7 +93,10 @@ head, and it is version-controlled, because the vault is just a git repo.
 
 `/lambda-map <course> <folders>` reads your tutorial sheets and past papers
 and writes a routing table: concept, drills to teach it, and the exam
-question it's worth marks on. 
+question it's worth marks on. Courses arrive week by week, so re-run it
+when new sheets drop: it reads its own source ledger and updates the map
+in place. Solutions files are used to check marks and intended methods,
+never shown to you.
 
 ## Anki
 
