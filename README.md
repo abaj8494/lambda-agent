@@ -15,7 +15,7 @@ based on course-content from University or School-work.
 The agent constructs MCQ questions from PDFs that you give it and also interpolates new problems
 for sub-topics that /you/ struggle with. The skill requires access to a frontier model and provides opportunity to ask questions in a REPL-like manner all throughout.
 
-The poignance of this sophistication is packaged simply as a pair Claude Code skills!
+The poignance of this sophistication is packaged simply as a pair of Claude Code skills!
 
 The first skill builds an index of your course's assessed questions whilst the other runs quiz sessions against it -- teaching you what you miss. The file-system keeps a running model of *why* you miss
 things. 
@@ -23,12 +23,12 @@ things.
 *State* is a folder of markdown. Obsidian renders it live (like in Eero's video), LaTeX and
 all. You answer questions by ticking checkboxes in your notes.
 
-Note: all the questions are MCQ, and this will get you only so far. c.f. McDaniel, Roediger (2006)
+Note: all the questions are MCQ, and this will get you only so far. c.f. Roediger & Karpicke (2006)
 
 The loop is Eero Alvar's, from [How I Use AI to Learn Things](https://youtu.be/kzcI5F4tGiU).
 I've only added memory and motive for my Grad-school needs:
 - Memory: every miss is logged in a fixed schema and past errors seed future wrong options. 
-- Motive: every question is anchored to real past-paper question and marks
+- Motive: every question is anchored to a real past-paper question and marks
 
 The pipeline:
 
