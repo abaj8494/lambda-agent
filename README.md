@@ -9,20 +9,25 @@
   <a href="https://youtu.be/kzcI5F4tGiU"><img src="https://img.shields.io/badge/method-Eero%20Alvar-b45309" alt="Method: Eero Alvar" /></a>
 </p>
 
-Exam prep as a pair of Claude Code skills. 
+In essence, an agentic Recommender System that builds a map of your working knowledge on-disk 
+based on course-content from University or School-work.
 
-The first skill builds an index of your course's assessed questions, the other runs quiz sessions against it, teaches you what you miss, and keeps a running model of *why* you miss
+The agent constructs MCQ questions from PDFs that you give it and also interpolates new problems
+for sub-topics that /you/ struggle with. The skill requires access to a frontier model and provides opportunity to ask questions in a REPL-like manner all throughout.
+
+The poignance of this sophistication is packaged simply as a pair Claude Code skills!
+
+The first skill builds an index of your course's assessed questions whilst the other runs quiz sessions against it -- teaching you what you miss. The file-system keeps a running model of *why* you miss
 things. 
 
-State is a folder of markdown. Obsidian renders it live (like in Eero's video), LaTeX and
+*State* is a folder of markdown. Obsidian renders it live (like in Eero's video), LaTeX and
 all. You answer questions by ticking checkboxes in your notes.
 
-Note: all the questions are MCQ, and this will get you only so far.
+Note: all the questions are MCQ, and this will get you only so far. c.f. McDaniel, Roediger (2006)
 
 The loop is Eero Alvar's, from [How I Use AI to Learn Things](https://youtu.be/kzcI5F4tGiU).
-I've added memory and motive:
-- Memory: every miss is logged in a fixed schema and your past errors
-seed future wrong options. 
+I've only added memory and motive for my Grad-school needs:
+- Memory: every miss is logged in a fixed schema and past errors seed future wrong options. 
 - Motive: every question is anchored to real past-paper question and marks
 
 The pipeline:
@@ -107,16 +112,18 @@ actually locked, the fronts must demand generation ("derive...", "state...",
 never options or true/false), and it pushes through AnkiConnect only after
 you approve each card. If you don't use Anki, nothing happens.
 
-## What this is and isn't
+## What's in the box:
 
-It's two SKILL.md files, a file-format spec, and an install script. There
-is no server, no account, no telemetry; your course materials and your
+- two SKILL.md files
+- a file-format spec
+- install script
+
+No server, no account, no telemetry; your course materials and your
 mistakes stay on your machine. The checkbox-answer mechanism is a two-second
 polling loop, which is inelegant and works fine. The skill format also
 loads in pi and Codex CLI, though I only use it under Claude Code.
 
-If you build a different renderer against SPEC.md, or find a place where
-the protocol teaches badly, open an issue. Pedagogy bugs are bugs here.
+Feel free to open issues. 
 
 ## Credits
 
