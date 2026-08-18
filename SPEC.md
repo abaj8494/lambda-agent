@@ -45,6 +45,9 @@ A front-end must render, inside standard markdown:
   identical.
 - More than one ticked box: the last one wins. No tick within the cap:
   the skill falls back to its native picker.
+- The checkbox is not the only channel: an answer typed directly to the
+  agent while a poll is open is equally valid and takes effect
+  immediately. Front-ends must not assume exclusivity.
 - Writers must append; never rewrite regions another writer authored.
 
 ## Contract 3 — integrations (optional)

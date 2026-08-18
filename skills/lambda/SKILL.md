@@ -43,6 +43,8 @@ otherwise `~/lambda-vault`. Layout:
   names a file (PDF, notebook, chapter), read it; if it names a concept,
   work from the course map.
 - `resume` — reopen the most recent session file with unfinished blocks.
+- `anki [tag]` — free-recall review REPL over today's due cards (requires
+  the `anki-deck:` config line; section below).
 - `log <free text>` — no quiz: convert the described stall into one
   misconception atom, append to `mind/misconceptions.md`, confirm, done.
 - `picker` (modifier) — use the terminal picker instead of click mode.
@@ -111,10 +113,13 @@ to the session file first — prose plus display LaTeX, options labelled
 
 - **Click mode (default):** write the options as clickable checkboxes —
   `- [ ] **(a)** $K = \Sigma^{-1}$` — then poll with a single shell loop
-  (`sleep 2` per cycle, ~5 min cap) until a `- [x]` appears; the click in
-  the renderer *is* the answer. More than one box checked → take the last;
-  none after the cap → fall back to the picker for that question. After
-  recording, replace the checkbox block with the verdict line.
+  (`sleep 2` per cycle, keep the window short: ~2 min, one retry) until a
+  `- [x]` appears; the click in the renderer *is* the answer. **A typed
+  answer is first-class at any moment** — learners often reply in the
+  terminal mid-poll; accept it, kill the stale poll, and move on. More
+  than one box checked → take the last; nothing after the window → fall
+  back to the picker for that question. After recording, replace the
+  checkbox block with the verdict line.
 - **Picker mode** (arg `picker`): ask via the native question tool
   (AskUserQuestion in Claude Code) with compact plain-text labels
   ("(a) K = Σ⁻¹" style unicode math). On agents without a native picker,
@@ -223,6 +228,42 @@ edge at acquisition · spaced free recall = retain the move · full
 cold reconstruction of past problems = prove it at exam pace. λambda feeds
 the second and names the third; it replaces neither.
 
+## Anki mode — `/lambda anki [tag]` (optional)
+
+An interactive layer over the day's due cards, for learners who review on
+devices where they can't ask questions. Requires the `anki-deck:` config
+line and a running AnkiConnect. **This mode is free recall plus
+interrogation — never MCQ a card front**; that would convert retention
+practice into recognition practice. Post-miss comprehension *checks* are
+acquisition work and are allowed (lock-in style, four options).
+
+1. `findCards` on `deck:<name> is:due` (+ `tag:<tag>`), `cardsInfo` for
+   fields. Agree a card budget up front (slow, question-rich review runs
+   ~4–5 cards/hour). Order: requeued Agains first — they test the previous
+   session's teaching — then the rest.
+2. Per card: render the **front only** into the session file (convert
+   `\(...\)`→`$...$`, `\[...\]`→`$$...$$`, strip HTML; image/TikZ-front
+   cards get flagged "review this one in Anki" and skipped — never grade
+   a card the learner didn't properly see).
+3. **Recall before reveal**, typed. Then show the back, compare, one-line
+   verdict. Right answer with wrong reasoning is a miss; echoing the
+   front's notation with nothing behind it is a miss, not recall.
+4. On a genuine stall, descend to the object layer — the gap is usually
+   below the card (what the object *is*, not the theorem about it). Teach
+   one layer per exchange, demand generation at each micro-step, then have
+   the learner redo the original cold. File an atom if it's a reasoning
+   gap rather than a lapse.
+5. **Grading**: the learner names Again/Hard/Good/Easy (recommend with a
+   one-line rationale; never inflate). Batch-push at session end via
+   `answerCards` (`[{"cardId": id, "ease": 1..4}]`), verify `reps`
+   incremented via `cardsInfo`, and list the grades in the exit ticket so
+   they can be regraded in Anki on disagreement. If `answerCards` errors,
+   stop and say so — never fake a grade.
+6. Pausing mid-card: leave it ungraded, mark it `PAUSED` in the session
+   file with exact resume instructions, and still write the exit ticket.
+7. The mastery table is NOT updated by this mode — the SRS owns retention
+   state; the mind image owns acquisition state.
+
 ## Misconception atom schema
 
 ```markdown
@@ -245,7 +286,10 @@ the second and names the third; it replaces neither.
 
 Mastery states: `unprobed → probed-pass | probed-miss → taught → locked`.
 A row reaches `locked` only through a correct variant answer — never by
-having been taught.
+having been taught. One honest caveat baked into the semantics: `locked`
+records *acquisition* at recognition level. Retention is proven by spaced
+free recall (the Anki side), not by this table — expect occasional stalls
+on locked material and treat them as data, not regression.
 
 ## Guardrails
 
