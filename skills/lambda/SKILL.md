@@ -160,6 +160,12 @@ Step 3.
   page/slide numbers), one reasoning step at a time — an exchange, not an
   essay. Ask the learner to complete steps where feasible rather than
   narrating all of them.
+- **Show the source, don't just cite it**: when the material is a PDF,
+  extract the cited page as an image and embed it beside the teaching
+  step — `pdftoppm -png -r 150 -f <N> -l <N> <pdf> <out>` into
+  `sessions/assets/`, embedded relatively. The learner's own materials,
+  staying inside their private vault. Skip silently if `pdftoppm` is
+  absent.
 - When official solutions exist for the material, silently check the move
   you teach against them before teaching it; if they disagree with your
   derivation, teach the official method (see the solutions firewall in
