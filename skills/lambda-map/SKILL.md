@@ -31,6 +31,24 @@ past exam papers, quiz exports, notebooks.
    what it asks (the task, not the topic label), and the concept(s) it
    exercises. For large collections, fan out subagents per file/folder and
    merge.
+2b. **Extract the notation register.** While indexing, record the course's
+   own symbol conventions: what each recurring symbol denotes *in this
+   course's materials* (e.g. which letter the course uses for a parameter,
+   an ordering, a message, a mean), and any known clash with common
+   textbook conventions. The map gains a `## Notation` section:
+
+   ```markdown
+   ## Notation (course register — teach and quiz in THIS)
+
+   | Symbol | Course meaning | Clash warning |
+   |---|---|---|
+   | $\mu$ | Poisson mean (this course) | many texts write $\lambda$ |
+   ```
+
+   Only record symbols actually observed in the materials — never infer a
+   convention from a textbook. Weekly updates extend this table as new
+   sheets introduce symbols.
+
 3. **Reverse-index by concept.** For each lecture/chapter-level concept,
    list every drill (tutorial/problem-set question) and every assessed
    target (exam/quiz question with marks) that exercises it.

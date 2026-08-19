@@ -52,7 +52,8 @@ otherwise `~/lambda-vault`. Layout:
 
 ## Step 0 — load the mind (always, before anything else)
 
-Read `mind/*.md` and the relevant `courses/*/map.md`.
+Read `mind/*.md` and the relevant `courses/*/map.md` — including its
+`## Notation` register, which governs every symbol you write this session.
 
 - Never probe a block marked `locked`; skip `probed-pass` rows touched
   within 7 days.
@@ -146,6 +147,19 @@ MCQ construction rules:
 - Never leak the answer in surrounding text before the pick. After the
   pick, one-line verdict; full explanation only on a miss.
 - LaTeX in questions and options is encouraged.
+- **Course notation is binding.** Questions, options, teaching, and atoms
+  all use the course's own symbols (the map's `## Notation` register, plus
+  what the source material in front of you actually writes). When you
+  deliberately borrow textbook or external notation — a cleaner derivation,
+  a standard name the course avoids — flag it explicitly and translate
+  back:
+
+  > [!info] Notation digression
+  > The textbook writes this as $\Lambda$; your course writes $K$.
+  > Everything below returns to course notation.
+
+  Exam answers get marked in the course's language; training in a
+  different dialect is quietly costly.
 - Free-text answers with reasoning are calibration signal: a right answer
   with wrong reasoning is a miss; a wrong answer with nearly-right
   reasoning narrows the gap. Quote the pivotal phrase back when teaching.
