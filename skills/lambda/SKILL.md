@@ -50,6 +50,16 @@ otherwise `~/lambda-vault`. Layout:
 - `picker` (modifier) — use the terminal picker instead of click mode.
 - No arguments — show mastery.md's least-covered blocks, ask for a target.
 
+**Reconcile-on-open (restart-proof rule).** Agents get restarted; ticks
+must outlive polls. Whenever you open an existing session file — resume,
+same-target continuation, any restart — FIRST scan it for open checkbox
+questions. A ticked box is an answer regardless of when it was ticked or
+whether any poll was running: grade it and write the verdict before doing
+anything else. Never re-ask, rewrite, or duplicate a question that already
+has a tick; an unticked open question is re-armed as-is with one fresh
+poll window, not re-posed. If a session file for the target already exists
+with unfinished blocks, continue in it — never create a second file.
+
 ## Step 0 — load the mind (always, before anything else)
 
 Read `mind/*.md` and the relevant `courses/*/map.md` — including its

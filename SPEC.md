@@ -48,6 +48,10 @@ A front-end must render, inside standard markdown:
 - The checkbox is not the only channel: an answer typed directly to the
   agent while a poll is open is equally valid and takes effect
   immediately. Front-ends must not assume exclusivity.
+- **Ticks are durable state, not poll events.** An answer ticked while no
+  agent was running is honored the next time any agent opens the file
+  (reconcile-on-open): the skill grades existing ticks before asking
+  anything new, and never re-poses a question that already has one.
 - Writers must append; never rewrite regions another writer authored.
 
 ## Contract 3 — integrations (optional)
