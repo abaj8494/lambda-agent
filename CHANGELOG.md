@@ -11,6 +11,12 @@
   instead of queueing behind a foreground poll (SPEC now requires this).
 - Word budgets: zero words after posting a question; capped verdicts and
   teach steps, every teach step ending with work for the learner.
+- Model attribution: session files open with YAML frontmatter recording
+  the presiding model as an append-only list (`model: [Opus 5]`), so
+  sessions taught by different models are distinguishable in the vault.
+- `/lambda-map` accepts lecture transcripts as an emphasis signal: the
+  map's routing weights toward what the current offering's lecturer
+  actually stressed, and verbal exam hints are noted on map rows.
 
 ## 0.1.2 — 2026-08-19
 

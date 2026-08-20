@@ -99,6 +99,24 @@ session file is the live UI: every question, verdict, teaching step, and
 diagram is appended as the session runs; the renderer (Obsidian or any
 SPEC-conforming front-end) shows it in real time.
 
+**Model attribution.** Open every session file with YAML frontmatter,
+above the H1:
+
+```
+---
+schema: 1
+model: [<model name>]
+---
+```
+
+`model` records which model presided, short form (e.g. "Opus 5",
+"Sonnet 5") — learners comparing models need to know who taught what. On
+reconcile-on-open, if the current model differs from the list's last
+entry, **append** it rather than overwrite; if an older file lacks
+frontmatter, add the block. Renderers that support frontmatter (Obsidian
+Properties) show it at the top; others show the raw block, which is
+acceptable.
+
 ## Step 1.5 — plan DAG (living)
 
 After chunking (and after the first probe round locates the edge), write a

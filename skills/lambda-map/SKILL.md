@@ -16,7 +16,16 @@ in their private vault and is never redistributed.
 `/lambda-map <course-name> <path> [more paths...]`
 
 Paths may be folders or files: lecture PDFs, tutorial/problem-set PDFs,
-past exam papers, quiz exports, notebooks.
+past exam papers, quiz exports, notebooks, **lecture transcripts**
+(`.txt`/`.md`/`.vtt` dumps of what was actually said).
+
+Transcripts are an emphasis signal, not a question source: past papers
+show what an earlier offering examined, but the transcript shows what
+*this* offering's lecturer stressed, skipped, or hinted at ("this will be
+on the exam", "we won't cover the proof"). When transcripts are present,
+weight the map's marks-bound routing toward the current offering's
+emphasis and note explicit verbal exam hints in the relevant map rows.
+File transcripts in the `## Sources` ledger like any other input.
 
 ## Procedure
 

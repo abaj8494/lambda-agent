@@ -86,5 +86,17 @@ Misconception atom statuses: `open → taught → drilled → closed`.
 ## Versioning
 
 This is **schema: 1**. Files written by the skills carry the schema in
-their header line. Breaking changes to the layout, contracts, or state
+their header line. Session files carry it in YAML frontmatter, which also
+records the presiding model(s) as an append-only list:
+
+```
+---
+schema: 1
+model: [Opus 5]
+---
+```
+
+A session resumed under a different model appends to `model` rather than
+overwriting — the file is a record of who taught what. Front-ends should
+surface the frontmatter but must not write to it except by this rule. Breaking changes to the layout, contracts, or state
 machine increment the major schema and are documented here.
