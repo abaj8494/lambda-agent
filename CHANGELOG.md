@@ -1,11 +1,16 @@
 # Changelog
 
-## 0.1.3 — 2026-08-19
+## 0.1.3 — 2026-08-21
 
 - Reconcile-on-open: checkbox answers now survive agent restarts. Ticks
   made while no agent was polling are graded the next time a session
   opens the file; questions with a tick are never re-posed, and a target
   with an unfinished session file is continued, never duplicated.
+- Non-blocking watching: the checkbox watcher runs as a background task
+  and the agent yields its turn, so typed messages land immediately
+  instead of queueing behind a foreground poll (SPEC now requires this).
+- Word budgets: zero words after posting a question; capped verdicts and
+  teach steps, every teach step ending with work for the learner.
 
 ## 0.1.2 — 2026-08-19
 

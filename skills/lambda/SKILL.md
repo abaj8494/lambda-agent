@@ -19,6 +19,22 @@ logistics.** Difficulty is the point — all of it goes into the concepts.
 Planning, sequencing, sourcing, verifying against the actual materials:
 the system absorbs silently.
 
+## Word budgets (binding — brevity is pedagogy)
+
+Frontier models default to eloquence; eloquence around a question is the
+system doing the learner's thinking. Hard caps, counted in prose words
+(display math and restated option text are free):
+
+- **After posting a question: zero words** until an answer arrives.
+- Verdict on a pass: ≤ 15 words. Verdict on a miss: ≤ 30 — correct option
+  in full, the error named, stop.
+- One teach step: ≤ 80 words, and it must **end with work for the
+  learner**. Never a second teach step before they respond.
+- Routing anchor: one sentence. Exempt: exit ticket, atoms.
+
+If an explanation doesn't fit the budget, descend a layer and ask —
+never write more.
+
 ## Model floor (check before Step 0)
 
 Run only on a frontier-tier model — MCQ distractor quality is the product.
@@ -123,14 +139,19 @@ to the session file first — prose plus display LaTeX, options labelled
 (a)–(d).
 
 - **Click mode (default):** write the options as clickable checkboxes —
-  `- [ ] **(a)** $K = \Sigma^{-1}$` — then poll with a single shell loop
-  (`sleep 2` per cycle, keep the window short: ~2 min, one retry) until a
-  `- [x]` appears; the click in the renderer *is* the answer. **A typed
-  answer is first-class at any moment** — learners often reply in the
-  terminal mid-poll; accept it, kill the stale poll, and move on. More
-  than one box checked → take the last; nothing after the window → fall
-  back to the picker for that question. After recording, replace the
-  checkbox block with the verdict line.
+  `- [ ] **(a)** $K = \Sigma^{-1}$` — then watch for a `- [x]`. **The
+  watcher must run as a background task and you must end your turn** — a
+  foreground sleep-loop holds the conversation hostage and the learner's
+  typed messages queue unseen until it times out. In Claude Code: Bash
+  with `run_in_background: true`, e.g.
+  `for i in $(seq 1 150); do grep -q -- '- \[x\]' <file> && exit 0; sleep 2; done; exit 1`;
+  its exit wakes you to grade. On harnesses without background tasks,
+  keep poll windows ≤ 30 s and yield between them. **A typed answer is
+  first-class at any moment** — accept it, kill the watcher, move on;
+  mid-question questions get answered with the watcher still running.
+  More than one box checked → take the last; watcher timeout with no
+  answer of any kind → fall back to the picker for that question. After
+  recording, replace the checkbox block with the verdict line.
 - **Picker mode** (arg `picker`): ask via the native question tool
   (AskUserQuestion in Claude Code) with compact plain-text labels
   ("(a) K = Σ⁻¹" style unicode math). On agents without a native picker,

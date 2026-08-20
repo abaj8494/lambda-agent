@@ -48,6 +48,10 @@ A front-end must render, inside standard markdown:
 - The checkbox is not the only channel: an answer typed directly to the
   agent while a poll is open is equally valid and takes effect
   immediately. Front-ends must not assume exclusivity.
+- **Watching must never block the conversation.** The reference
+  implementation polls from a background task and yields the turn, so
+  typed input always lands immediately; a front-end or agent that blocks
+  its input channel while waiting on a checkbox is non-conformant.
 - **Ticks are durable state, not poll events.** An answer ticked while no
   agent was running is honored the next time any agent opens the file
   (reconcile-on-open): the skill grades existing ticks before asking
