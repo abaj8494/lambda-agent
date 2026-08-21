@@ -31,6 +31,12 @@ File transcripts in the `## Sources` ledger like any other input.
 
 1. **Inventory and classify.** List candidate files; classify each as
    questions or solutions (`*solution*`, `*answers*`, `*marking*`, keys).
+   The learner's own submitted work (assignments, graded quizzes, past
+   answers) may be indexed for ROUTING — what the course asks, where the
+   marks sit — but is NEVER mastery evidence: it may be AI-assisted or
+   otherwise not the learner's own, and the map must not seed or imply
+   any mastery state from it. Beliefs about the learner update only on
+   what λ observes in its own sessions.
    Solutions are **grounding, not content**: read them to confirm marks,
    intended method, and concept labels — never copy solution text, steps,
    or final answers into the map. The map must read cleanly as if built

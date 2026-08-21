@@ -81,6 +81,13 @@ unprobed → probed-miss → taught → locked
 teaching — never by having been taught. `probed-pass` rows are not
 re-probed within 7 days.
 
+**Evidence provenance:** states advance only on evidence the skill
+observed itself, in-session. External results — grades, submitted
+assignments, LMS-marked answers, prior write-ups — are routing signals
+(things worth verifying) and never move a state: they may not be the
+learner's own work, and the mind image exists to be accurate, not
+flattering.
+
 Misconception atom statuses: `open → taught → drilled → closed`.
 
 ## Versioning

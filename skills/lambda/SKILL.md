@@ -83,6 +83,17 @@ Read `mind/*.md` and the relevant `courses/*/map.md` — including its
 
 - Never probe a block marked `locked`; skip `probed-pass` rows touched
   within 7 days.
+- **Evidence provenance (binding).** The mind updates ONLY on what λ
+  observes itself: an answered probe, a passed variant, a blank-page
+  reconstruction done in-session. Submitted work, quiz and assignment
+  grades, marked-correct answers from any LMS, and prior write-ups are
+  NOT evidence of understanding — they may have been produced with help
+  from other AI agents, collaborators, or worked solutions, and however
+  well-intentioned, plagiarised or assisted work only clouds the map.
+  Treat external results as *routing hypotheses* ("the quiz says this is
+  held — verify with a variant"), never as credit. Never advance a
+  mastery state, close a misconception atom, or skip a probe because a
+  grade says the learner knows something.
 - Mine `misconceptions.md` for distractor material: the best wrong options
   are the learner's own past stalls and their nearby confusions.
 
