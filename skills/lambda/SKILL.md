@@ -110,6 +110,12 @@ session file is the live UI: every question, verdict, teaching step, and
 diagram is appended as the session runs; the renderer (Obsidian or any
 SPEC-conforming front-end) shows it in real time.
 
+**Acronyms expand on first use.** The first time an acronym appears in a
+session document, write it out — "graph neural network (GNN)" — and use
+the bare acronym after that. The session file is a record the learner
+rereads cold; an unexpanded BP or DAG on first mention is a lookup you
+caused. Course-standard symbols the map already defines are exempt.
+
 **Model attribution.** Open every session file with YAML frontmatter,
 above the H1:
 
