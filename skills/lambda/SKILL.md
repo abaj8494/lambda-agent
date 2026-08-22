@@ -48,10 +48,15 @@ otherwise `~/lambda-vault`. Layout:
 
 - `mind/profile.md` — stable facts about the learner
 - `mind/misconceptions.md` — the atoms (schema below)
-- `mind/mastery.md` — per-concept state table
+- `mind/mastery.md` — per-concept state table (course-bound; dies with
+  its exam)
+- `mind/substrate.md` — cross-course atoms (schema below): assumed
+  prerequisites and transferable moves, evidence-gated
 - `courses/<name>/map.md` — concept → drill → assessed-problem routing
-  (built by `/lambda-map`)
-- `sessions/` — one file per session; the live UI
+  (built by `/lambda-map`); may open with an `assumes: <slug>, …` line
+  naming the substrate atoms the course leans on
+- `sessions/` — one file per session; the live UI. The session DAG lives
+  in the adjacent `<name>.dag.md` when the front-end has a DAG surface
 
 ## Modes (from the arguments)
 
@@ -137,10 +142,16 @@ acceptable.
 ## Step 1.5 — plan DAG (living)
 
 After chunking (and after the first probe round locates the edge), write a
-**mermaid dependency DAG** of the session path into the session file —
-nodes = concept blocks, edges = depends-on. Two reasons: the learner sees
-what's coming, and drawing the graph forces you to reason out the
-dependency order rather than winging it. Keep it under ~10 nodes.
+**mermaid dependency DAG** of the session path — nodes = concept blocks,
+edges = depends-on. Two reasons: the learner sees what's coming, and
+drawing the graph forces you to reason out the dependency order rather
+than winging it. Keep it under ~10 nodes.
+
+Put it in the adjacent file `sessions/<basename>.dag.md` and leave a
+`DAG: [[<basename>.dag]]` pointer line in the session file (front-ends
+with a DAG pane read the adjacent file; Obsidian users follow the link).
+Never add checkboxes to a `.dag.md` file. A single-pane deployment may
+instead keep the legacy in-file `## Session DAG` section.
 
 **The DAG is living, not a frontispiece.** After every block, update it in
 place: `classDef done fill:#9c9,stroke:#363`, `classDef current
@@ -164,6 +175,23 @@ broad; a confident pass jumps ahead (skip deeper questions in that
 strand), a miss steps *down* the dependency chain until you find what the
 learner does hold. 2–4 questions per block is typical, but the edge
 decides, not the count.
+
+**Descent OFF the course map files to the substrate.** The test is map
+membership, not importance: if the concept the chain bottomed out on is
+a row of this course's map, it is course material — file it in
+mastery.md as usual, however fundamental it feels. Only a concept the
+map never claims (assumed, never taught, no marks — matrix
+multiplication under a GNN lecture, a language idiom under a coding
+task) files to `mind/substrate.md` (one atom per concept; append an
+evidence line if the atom exists). The learner's edge defines the
+floor: what the descent never visits never enters.
+
+**Substrate fast lane.** If the course's `assumes:` register (or live
+descent) names a substrate atom whose verification is old or from
+another course, re-verify with ONE variant question before relying on
+it: pass → update `Verified:`, re-locked, no teaching, move on in
+seconds; fail → the normal miss path. Old evidence routes, it never
+credits — the same provenance rule external results get.
 
 Probe questions use **3 content options + "I don't know"** — an honest IDK
 is better calibration data than a lucky guess, and it must never be
@@ -361,6 +389,25 @@ acquisition work and are allowed (lock-in style, four options).
    file with exact resume instructions, and still write the exit ticket.
 7. The mastery table is NOT updated by this mode — the SRS owns retention
    state; the mind image owns acquisition state.
+
+## Substrate atom schema
+
+One atom per concept in `mind/substrate.md` — a concept two courses
+touch is one atom with two evidence lines, never two entries:
+
+```markdown
+## <slug> — <canonical concept name>
+
+- **State:** unprobed | probed-pass | probed-miss | taught | locked
+- **Verified:** <YYYY-MM-DD> · <course/session> (<the variant that proved it>)
+- **Leaned on by:** <course> (<where>), <course> (<where>)
+- **Domain:** <one tag: linear-algebra | probability | calculus | code | …>
+- **Notes:** <the move itself, one or two lines, LaTeX welcome>
+```
+
+`Verified:` lines append (newest first) — the history is the provenance.
+`Domain:` is a display tag, never a file boundary. Update `Leaned on by:`
+whenever a new course's map or session touches the atom.
 
 ## Misconception atom schema
 

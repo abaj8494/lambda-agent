@@ -93,6 +93,13 @@ Source roots: <paths>
    End the map with a `## Sources` ledger: one line per indexed file with
    the date it was indexed. This is what makes weekly updates cheap.
 
+   If the syllabus states prerequisites, open the map with an
+   `assumes: <slug>, <slug>` line naming substrate atoms (SPEC "The
+   substrate") — declared dependencies, NOT map rows: they carry no
+   drills or marks, and sessions re-verify them by fast lane at need.
+   Never probe them at map-build time; the register also grows lazily
+   from descent events, so an empty or absent line is fine.
+
 6. Report: units mapped, questions indexed, the top-3 marks
    concentrations, and any blind spots (concepts with no drill or no
    assessed exemplar).

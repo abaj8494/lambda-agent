@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.2.0 — 2026-08-23
+
+- **The substrate** (`mind/substrate.md`): cross-course atoms for what
+  courses assume but never teach. Admission is evidence-gated and the
+  course map is the fence — three doors: prerequisite descent off the
+  map, second-context promotion, approved end-of-course harvest. One
+  atom per concept; `Verified:` lines append as provenance.
+- **Provenance over time**: substrate states never transfer into a new
+  course — old evidence routes, never credits. Re-verification is a
+  fast lane: one variant question, pass → re-locked in seconds.
+- **Context discipline**: courses never read each other; sessions load
+  only the substrate atoms their map's `assumes:` register names.
+- `/lambda-map` may open a map with an `assumes: <slug>, …` register
+  (declared, lazily grown — never a placement test).
+- Session DAG standardised into the adjacent `<name>.dag.md` file with
+  a `DAG: [[…]]` pointer line (in-file section stays valid for
+  single-pane renderers); pedagogy rules from 0.1.x line: drawn
+  diagrams for structural material, occasional primary-source routing,
+  acronyms expanded on first use.
+- All additive — vaults without the new file or registers remain
+  conformant; schema stays 1.
+
 ## 0.1.3 — 2026-08-21
 
 - Reconcile-on-open: checkbox answers now survive agent restarts. Ticks
