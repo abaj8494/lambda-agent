@@ -234,6 +234,18 @@ Step 3.
   page/slide numbers), one reasoning step at a time — an exchange, not an
   essay. Ask the learner to complete steps where feasible rather than
   narrating all of them.
+- **Graphical material gets a drawn diagram.** When the concept IS a
+  structure — a graph, a chain, a network, a message flow — teach it with
+  a diagram drawn for this miss (a mermaid fence in the session file, or
+  whatever figure pipeline the deployment carries), not with prose about
+  edges. A figure drawn for the miss beats a pasted screenshot: it can
+  omit everything except the missing move.
+- **Send the learner to the primary material, sometimes.** Not every
+  teach step should be self-contained: at natural points, point to the
+  original source instead — the textbook, referenced precisely (author,
+  §section, page), or the slides (deck + slide numbers) — and say what to
+  look for there. Reading the real reference unassisted is itself part of
+  the skill being trained.
 - **Show the source, don't just cite it**: when the material is a PDF,
   extract the cited page as an image and embed it beside the teaching
   step — `pdftoppm -png -r 150 -f <N> -l <N> <pdf> <out>` into
